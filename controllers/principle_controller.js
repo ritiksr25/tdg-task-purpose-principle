@@ -25,21 +25,21 @@ module.exports.addProcess = (req, res) => {
 }
     
 module.exports.update = (req, res) => {
-  Principle.findOne({_id: req.params.id}).then(principle => {
-    if(principle.user != req.user.id){
+  Principle.findOne({_id: req.params.id}).then(principles => {
+    if(principles.user != req.user.id){
       req.flash('error_msg', 'Access Denied!');
       res.redirect('/users/dashboard');
     } else {
-      res.render('principles/update', { principle });
+      res.render('principles/update', { principles });
     }
   }).catch(err => console.log(err));
 }
 
 
 module.exports.updateProcess = (req, res) => {
-  Principle.findOne({ _id: req.params.id }).then(principle => {
-    principle.title = req.body.title;
-    principle.save().then(principle => {
+  Principle.findOne({ _id: req.params.id }).then(principles => {
+    principles.title = req.body.title;
+    principles.save().then(principles => {
       req.flash('success_msg', 'Updated Successfully!!');
       res.redirect('/users/dashboard');
     });
@@ -48,13 +48,13 @@ module.exports.updateProcess = (req, res) => {
 
 
 module.exports.delete = (req, res) => {
-  Principle.findOne({ _id: req.params.id }).then(principle => {
-    if(principle.user !== req.user.id){
+  Principle.findOne({ _id: req.params.id }).then(principles => {
+    if(principles.user != req.user.id){
       req.flash('error_msg', 'Access Denied!');
       res.redirect('/users/dashboard');
     }
     else{
-      Principle.deleteOne({ _id: req.params.id }).then(principle => {
+      Principle.deleteOne({ _id: req.params.id }).then(principles => {
         req.flash('success_msg', 'Deleted Successfully!!');
         res.redirect('/users/dashboard');
       }).catch(err => console.log(err));

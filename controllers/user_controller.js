@@ -87,20 +87,16 @@ module.exports.loginProcess =  (req, res, next) => {
 module.exports.logout = (req, res) =>{
     req.logout();
     req.flash('success_msg', 'Logged out Successfully!!');
-    res.redirect('/');
+    res.redirect('/users/login');
 }
 
-
-//module.exports.profile = (req, res) =>{
-//	User.find({_id: req.params.id}).then(users =>{
-//		Principle.find({user: req.params.id}).then(principles =>{
-//			res.render('users/profile', {users, principles})
-//		}).catch(err => console.log(err));
-//	}).catch(err => console.log(err));
-//}
 
 module.exports.dashboard = (req, res) =>{
-	Principle.find({user: req.user.id}).then(principles =>{
-		res.render('users/dashboard', {principles});
+	console.log(req.user);
+	User.find({_id: req.user.id}).then(user =>{
+		Principle.find({user: req.user.id}).then(principles =>{
+			res.render('users/dashboard', {user, principles})
+		}).catch(err => console.log(err));
 	}).catch(err => console.log(err));
 }
+

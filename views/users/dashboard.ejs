@@ -1,0 +1,42 @@
+ <% include ../partials/head %>
+
+ <div class="fluid-container">
+    <div class="container">
+      <div class ="jumbotron header mt-4">
+          <h1 class="display-4">Welcome <%=user.name%></h1>
+          
+          <hr class="my-4">
+          <p>
+            Here you can view, add, update or delete your Purpose Principles
+          </p>
+      </div>
+
+    <div id = "principles">
+      <div class ="jumbotron header mt-4">
+        <h4 class="display-4">Your Principles <a href="/principles/add" class="btn btn-primary" title="add">Add a Principle</a></h4>
+        <hr class="my-4">
+        <div class="row">
+          
+
+    <% principles.forEach(principle =>{ %>
+    <div class="col-lg-4 col-sm-6 col-12 style="padding: 16px;">
+    <% if(principle.category === 'mission'){ %>
+    <div class="card bg-danger text-white" style="padding: 16px;">
+    <%}%>
+    <% if(principle.category === 'vocation'){ %>
+    <div class="card bg-primary text-white" style="padding: 16px;">
+    <%}%>
+    <% if(principle.category === 'profession'){ %>
+    <div class="card bg-success text-white" style="padding: 16px;">
+    <%}%>
+    <% if(principle.category === 'passion'){ %>
+    <div class="card bg-warning text-white" style="padding: 16px;">
+    <%}%>
+                  <h2 class= "title"><%= principle.title%></h2>
+                  <span class="subtitle"><%= principle.category%></span>
+                  <a href="/principles/update/<%= principle._id %>" class="btn btn-light" title="Update">Update</a>
+        <a href="/principles/delete/<%= principle._id %>" onclick="return confirm('Are you sure you want to delete this purpose?');" class="btn btn-light" title="Delete">Delete</a>
+              </div>
+          </div>
+
+    <% }) %>
