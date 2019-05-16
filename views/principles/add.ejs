@@ -1,0 +1,24 @@
+<% include ../partials/head %>
+
+<div class="col-sm-6 mx-auto">
+<div class="card">
+<h2 class="card-header">Add a Purpose Principle </h2>
+  <div class="card-body">
+    <h3 class="card-title">
+  <form class="form" action="/principles/add" method="post">   
+  <label for="title">Title: </label>
+  <input type="text" name="title" class="form-control" placeholder="Principle Title" required autofocus><br>
+  <label for="Category">Category: </label>
+ <input type="radio" value="passion" name="category">Passion
+ <input type="radio" value="mission" name="category">Mission
+ <input type="radio" value="profession" name="category">Profession
+ <input type="radio" value="vocation" name="category">Vocation<BR>
+  
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <a href="/users/dashboard" class="btn btn-secondary" title="Return">Return</a>
+  </form>
+    </h3>
+  </div>
+</div>
+</div>
+<% include ../partials/footer %>

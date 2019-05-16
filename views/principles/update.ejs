@@ -1,0 +1,19 @@
+<% include ../partials/head %>
+
+<div class="col-sm-6 mx-auto">
+<div class="card">
+<h2 class="card-header">Update Principle </h2>
+  <div class="card-body">
+    <h3 class="card-title">
+  <form class="form" action="/principles/update/<%= principles._id%>" method="post">    
+  <label for="title">Title: </label>
+  <input type="text" name="title" class="form-control" placeholder="Principle Title" value= "<%=principles.title%>" required autofocus><br>
+  <button class="btn btn-primary" type="submit">Submit</button>
+  <a href="/users/dashboard" class="btn btn-secondary" title="Return">Return</a>
+  </form>
+    </h3>
+  </div>
+</div>
+</div>
+
+<% include ../partials/footer %>
